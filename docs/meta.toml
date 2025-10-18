@@ -1,0 +1,10 @@
+[app]
+name = "mulemail"
+version = "0.1.0"
+author = "Immanuel Stemmert<mail@immanuelstemmert.de>"
+
+
+[meta]
+license = "GLPv3"
+created = 2025-10-18
+update = 2025-10-18
