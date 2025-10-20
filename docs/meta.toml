@@ -1,10 +1,12 @@
 [app]
 name = "mulemail"
 version = "0.1.0"
-author = "Immanuel Stemmert<mail@immanuelstemmert.de>"
-
+license = "GLPv3"
+author = "Immanuel Stemmert"
 
 [meta]
-license = "GLPv3"
+repo = 'https://github.com/bertrandterrier/mulemail'
+homepage = false
+contact = 'mail(at)immanuelstemmert.de'
 created = 2025-10-18
 update = 2025-10-18
