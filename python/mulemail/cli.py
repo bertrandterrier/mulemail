@@ -1,22 +1,48 @@
+import os
 import typer
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Optional
 from rich import print
+
+import mulemail as mule
 
 app = typer.Typer()
 
 
 @app.callback()
 def main(
-    version: Annotated[bool, typer.Option(False, "--version", "-v")],
-    show: Annotated[bool, typer.Option(False, "--show", "-s")],
+    conf_file: Annotated[str|None, typer.Option(
+        "-c", "--config-file",
+        help = "Alternative path for config file",
+    )] = None,
+    conf_dir: Annotated[str|None, typer.Option(
+        "-C", "--config-dir",
+        help = "Alternative path for config directory",
+    )] = None,
 ):
-    if show:
-        print("show")
-    elif version:
-        print("version")
+    if conf_file:
+        conf_file = os.path.expandvars(os.path.expanduser(conf_file))
+    elif conf_dir:
+        conf_file = os.path.join(conf_dir, mule.config.CONF_FILE_NAME)
+    else:
+        conf_file = str(mule.config.CONF_FILE_PATH)
+
+    mule.config.set_config_data(conf_file)
+
+    return
+
+_complete_acc_list = mule.accounts + ['all']
+def complete_account(ctx: typer.Context, param:, text) -> list[str]:
+    result: list[str] = []
+    if 'all'.startswith(param)
     return
 
 
+@app.command("fetch")
+def fetch(
+    account: Annotated[Optional[str], typer.Argument(
+        help = "Account name or e-mail address",
+    )]
+):
 
 if __name__ == "__main__":
     app()
