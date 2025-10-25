@@ -1,0 +1,14 @@
+[global]
+dir = '$HOME/Mails'	# Where parsed mail directories are stored.
+server = false 		# Server link
+ports.imap = 993
+ports.smtp = 587	
+signature = false	# Path to signature file.
+update = 'auto'		# NOT IN USAGE YET
+
+#[[account]]
+#name = "Display Name"
+#address = 'address@example.com'
+#...
+
+# For accounts you can also use the global keys, which will overwrite the global setting.

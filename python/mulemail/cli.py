@@ -1,7 +1,6 @@
 import os
 import typer
 from typing_extensions import Annotated, Optional
-from rich import print
 
 import mulemail as mule
 
@@ -24,7 +23,7 @@ def main(
     elif conf_dir:
         conf_file = os.path.join(conf_dir, mule.config.CONF_FILE_NAME)
     else:
-        conf_file = str(mule.config.CONF_FILE_PATH)
+        conf_file = str(mule.)
 
     mule.config.set_config_data(conf_file)
 
