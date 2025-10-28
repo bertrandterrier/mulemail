@@ -25,8 +25,6 @@ def main(
     else:
         conf_file = str(mule.)
 
-    mule.config.set_config_data(conf_file)
-
     return
 
 _complete_acc_list = mule.accounts + ['all']
