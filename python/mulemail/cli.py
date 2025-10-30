@@ -1,45 +1,39 @@
-import os
+from enum import Enum
+from pathlib import Path
 import typer
+from typer.models import CallbackParam
 from typing_extensions import Annotated, Optional
+from rich import print
 
-import mulemail as mule
+#import mulemail as mule
+#from mulemail.schemes import PathStr
 
-app = typer.Typer()
+cli = typer.Typer()
+
+class SetupOps(str, Enum):
+    show = "show"
+    update = "update"
+    reset = "reset"
+
+def autocomplete(ctxt, callback: CallbackParam, arg):
+    caller = callback.human_readable_name
 
 
-@app.callback()
-def main(
-    conf_file: Annotated[str|None, typer.Option(
-        "-c", "--config-file",
-        help = "Alternative path for config file",
-    )] = None,
-    conf_dir: Annotated[str|None, typer.Option(
-        "-C", "--config-dir",
-        help = "Alternative path for config directory",
-    )] = None,
+@cli.command(name = "config")
+def setup(
+    operation: Annotated[SetupOps, typer.Argument(
+        show_choices = True,
+        autocompletion = lambda: ["show", "update", "reset"]
+    )],
 ):
-    if conf_file:
-        conf_file = os.path.expandvars(os.path.expanduser(conf_file))
-    elif conf_dir:
-        conf_file = os.path.join(conf_dir, mule.config.CONF_FILE_NAME)
-    else:
-        conf_file = str(mule.)
-
-    return
-
-_complete_acc_list = mule.accounts + ['all']
-def complete_account(ctx: typer.Context, param:, text) -> list[str]:
-    result: list[str] = []
-    if 'all'.startswith(param)
-    return
+    print(operation)
 
 
-@app.command("fetch")
-def fetch(
-    account: Annotated[Optional[str], typer.Argument(
-        help = "Account name or e-mail address",
-    )]
-):
 
 if __name__ == "__main__":
-    app()
+    #mule.LOGGER.info("START mulemail..")
+    #mule.LOGGER.info("LOAD config..")
+
+    #global CONFIG
+    #CONFIG = mule.helper.get_config(mule.CONFIG_DIR)
+    cli()

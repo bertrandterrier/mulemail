@@ -1,30 +1,19 @@
 import logging
 import os
-from pathlib import Path
-from datetime import datetime
 
-from mulemail.utils.helper import set_logger, get_cache
+from mulemail.utils import helper
+from mulemail.settings import *
 
-APP_NAME = "mulemail"
-BASE_DIR = Path(__file__).parent 
+LOGGER = helper.makelogger(logging.DEBUG)
 
-LOGGER = set_logger(logging.DEBUG)
+APP = "mulemail"
 
-# DIRECTORIES
-MAIL_DIR = os.path.expandvars(os.path.expanduser("$HOME/Mails"))
+HOME = Path().home()
 
-DATA_CACHE = Path(os.environ.get("XDG_CACHE_HOME", os.path.expanduser("~/.cache/"))) / "mulemail"
+CONFIG_DIR = helper.get_xdg_path("config") / APP
 
-DATA_STORAGE = os.path.expandvars("$XDG_DATA_HOME/mulemail")
+CACHE_DIR = helper.get_xdg_path("cache") / APP
 
-APP_STATES = os.path.expandvars("$XDG_DATA_HOME/mulemail")
+DATA_DIR = helper.get_xdg_path("data") / APP
 
-APP_CONFIG = os.path.expandvars("$XDG_CONFIG_HOME/mulemail")
-
-MSG_CONTENT_NAME = "message.*"
-
-MSG_DATA_FNAME = "head.toml"
-
-MSG_ATTACH_DIR = "attachments/"
-
-CACHE = get_cache()
+STATE_DIR = helper.get_xdg_path("state") / APP
